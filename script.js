@@ -35,12 +35,12 @@
 // jab async code likhoge toh woh kabhi future me jake chalega or hame nhi pata ki woh code kab chalega toh uskeo ham asynchrounluly likhte hai
 
 // async code kese likhte hai
-
+ 
 // settimeout
 // setInterval
 // fetch
 // axios
-// XMLHttpRequest
+// XMLHttpRequest  
 // Promises
 
 // console.log("hey1")
@@ -62,16 +62,11 @@
 
 // do stacks hote hai ek hota hai main stack or doosra hota hai side stack jo main stack hota hai usme ek baad ek sync  code jata hai or line bhi line jesa likha hai wesa exute hojata hai  or usi time side stack me jata hai jo async code likha hai  js mein woh  yeh code sath sath behind the scene apni processing krta rehta hai jab sync code poora chal jata hai uske baad main stack side stack se poocha hai hogyi processing yah jo bho request mari ho apn ne kahi pr uska answer agya ho toh woh async code ajata hai ab main stack mein or exexute hojate hai sabse last mein toh yeh jo communication  hoti hai side stack ke code ko main stack me lane me uske kehte hai EVENT LOOP IN JS 
 
-
 // by default ham kehte hai js asynchronous hoti hai pr esa nhi hai asynchronous ka mtlb hota hai do kaam ko ek sath krna pr esa toh hota hi nhgi hai js hai single thredded language yeh ek bar mei  ek hi computation krskti hai or yeh main stack or side wala kaam itne tez hota hai hame lgta hai async way me horha hai pr hota nhi hai behind the scene processing hoti hai or main stack mein exuctiton pr dono ka exexution ek sath nhi hota  hai islye js async nhi hai 
-
-
-
 
 // yeh sab async code ko likhne ka tareeka hota hai
 
 // or in async code ko chalane ke liye ham use krte hai kyoki async code hame nhi pata kab tk asnwer milega toh yeh sab code jab chalta hai jab asnwer ajate hai toh us asnwer ko output ke liye yeh sab ka use hota hai callbacks, then catch, async and await.
-
 
 // callbacks
 // then catch
@@ -81,7 +76,6 @@
 //callbacks : callback hamesha ek function hota hai jo async code ka asnwer ane pr chalta hai jo exexution krna haina code ka woh callback function me ata hai
 
 // callback ek function hota hai yeh hamesh async code ke comletion pe chalta hai...
-
 
 // console.log("helllo")
 // console.log("heyyyy")
@@ -163,31 +157,113 @@
 // })
 
 
+// let p1 = new Promise((res, rej)=>{
+//          return res("first promise complete");
+// });
+// let p2 = p1.then((data)=>{
+//     console.log(data);
+//     return new Promise((res, rej)=>{
+//          return res("Second promise complete")
+//     })
+// });
+// let p3 = p2.then((data)=>{
+//     console.log(data);
+//     return new Promise((res, rej)=>{
+//          return res("third promise complete")
+//     })
+// });
+// p3.then((data)=>{
+//     console.log(data);
+// }).catch(function(error){console.error(error)})
 
+// let resolvepromise = new Promise(function(res, rej){
+//     res("Lets make an promise")
+//  })
+//  let ans = Promise.resolve(resolvepromise);
+//  ans.then(function(data){console.log(data)})
+ 
+// let promiserejected = new Promise((res, rej) => {
+//     rej("Rejected");
+//   });
+//   let ans = Promise.reject("Your Promise Rejected Successfully.");
+//   ans.catch(function(error) {
+//     console.info(error);  // Output: Your Promise Rejected Successfully.
+// });
 
-// then 
+// function  requests(){
+//    fetch(`https://randomuser.me/api/`);
+//    .then(function (raw){
+//     return raw.json();
+// })
 
-
-function  requests(){
-   fetch(`https://randomuser.me/api/`);
-   .then(function (raw){
-    return raw.json();
-})
-
-.then(function (data){
-    console.log(data);
-})
-}
-requests();
+// .then(function (data){
+//     console.log(data);
+// })
+// }
+// requests();
 // .then se bachne ke liye or code ko simplify krne ke liye ham use  hai async  await ka
 
+
+// let  p1 = new Promise((res, rej)=>{
+//      return res("Promise 1 Successfully resolved")
+// })
+// let p2 = p1.then(function(data){
+//      console.log(data);
+//      return new Promise((res, rej)=>{
+//         return res("Promise 2 Successfully resolved")
+//      })
+// })
+
+// p2.then(function(data){
+//     console.log(data);
+// });
+
+// let answers = Promise.all([p1, p2]).then(function(data){
+//     console.log(data);
+// }).catch(function(error){
+//     console.info(error);
+// })
+
+
+// let  p1 = new Promise((res, rej)=>{
+//     return res("Promise 1 Successfully resolved")
+// })
+// let p2 = p1.then(function(data){
+//     console.log(data);
+//     return new Promise((res, rej)=>{
+//        return rej("Promise 2 rejected.")
+//     })
+// })
+// p2.catch(function(error){console.error(error)})
+
+// let ans = Promise.any([p1, p2]).then(function(data){console.log(data)}).catch(function(error){console.warn(error)})
+
+
+// let p1 =  new Promise((res,rej)=>{
+//        return res("Promise 1 resollved sucessfully.");
+// })
+// let p2 = p1.then(function(data){
+//     console.log(data);
+//     return new Promise((res, rej)=>{
+//          return rej("Promise 2 rejected successfully");
+//     })
+// });
+// p2.catch(function(error){
+//     console.info(error);
+// })
+
+// let answers = Promise.allSettled([p1,p2])
+// answers.then(function(data){
+//     console.log(data);
+// }).catch(error=>{
+//     console.error(error);
+// });
 
 // async function requests(){
 //   let raw = await fetch(`https://randomuser.me/api/'`);
 //   let  data =   await raw.json();
 //     console.log(data)
 // }
-
 // requests();
 
 
@@ -197,5 +273,21 @@ requests();
 
 // parallelism: focus zyada krta hai  differenct processor or unke cores pr kaam ko chalane pr 
 
-// throttling: throttling ki madad se kam kisi bhi code ke exexution ko kam krskte hai apne hisab se..
+// throttling: throttling ki madad se ham kisi bhi code ke exexution ko kam krskte hai apne hisab se..
+
+//In JavaScript, generators are a special type of function that can be paused and resumed, allowing you to control the execution of a function over time. They are defined using the function* syntax and make use of the yield keyword to pause the function's execution.
+
+
+
+// function* numberGenerator(){
+//       for(let i=1; i<=5; i++){
+//           console.log(i);
+//         if(i == 3){
+//             yield "stopped successfully"
+//         }
+//       }
+// };
+// const generator = numberGenerator();
+// console.log(generator.next().value);
+// console.log(generator.next().value);
 
